@@ -1,0 +1,1 @@
+{"arOrder":{"ID":"DESC"},"arFilter":{"STATUS":2},"arSelect":["ID","TITLE","DESCRIPTION","DEADLINE","RESPONSIBLE_ID","GROUP_ID","TAGS"]}
