@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+import os
 import asyncio
 import asyncpg
 import httpx
@@ -6,8 +6,22 @@ import logging
 import sys
 from datetime import datetime
 
-# Боевые константы инфраструктуры Медтеха
-DB_DSL = "postgresql://litvinyn:Fklgy57995@157.22.198.133:5432/xclaw_db"
+# Безопасное чтение доступов из переменных окружения или локального .env
+# Если переменная не задана в системе, скрипт попытается прочитать её, либо упадет с понятной ошибкой
+DB_DSL = os.getenv("DATABASE_URL")
+
+# --- Если .env файл лежит рядом, подгрузим его автоматически ---
+if not DB_DSL and os.path.exists(".env"):
+    with open(".env", "r") as f:
+        for line in f:
+            if line.startswith("DATABASE_URL="):
+                DB_DSL = line.strip().split("=")[1]
+
+# Логируем валидацию безопасности
+if not DB_DSL:
+    print("❌ Критическая ошибка безопасности: DATABASE_URL не задана в окружении!")
+    sys.exit(1)
+
 GATEWAY_URL = "http://127.0.0.1:18795/webhook" # Локальный порт нашего FastAPI шлюза
 
 logging.basicConfig(
