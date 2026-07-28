@@ -5,3 +5,4 @@ gateway/*.log
 gateway/.runtime/
 __pycache__/
 *.save
+.env
