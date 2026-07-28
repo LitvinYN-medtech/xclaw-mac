@@ -1,0 +1,40 @@
+{
+  "gateway": {
+    "port": 8000,
+    "bind": "127.0.0.1",
+    "auth": {
+      "mode": "token",
+      "secret": "MedtechSecretKey2026"
+    }
+  },
+  "channels": {
+    "bitrix24": {
+      "enabled": true,
+      "botId": 600,
+      "botCode": "g4291aggd7vcd5st",
+      "clientId": "9uad0e151p4xieuatebyq21tm1t1ph50",
+      "portalUrl": "https://crm.medtech.moscow",
+      "userId": "584",
+      "accessToken": "46ybm3qzti4j5vid",
+      "endpoint": "/webhook/bitrix",
+      "rag": {
+        "enabled": true,
+        "store": "builtin_sqlite",
+        "auto_index_dialogs": true
+      }
+    }
+  },
+  "providers": {
+    "anthropic_via_vps": {
+      "type": "openai_compatible",
+      "api_base": "http://176.12.73.65:9000/v1",
+      "api_key": "not_required_for_internal_tunnel",
+      "default_model": "claude-3-5-sonnet"
+    }
+  },
+  "memory": {
+    "type": "sqlite",
+    "database_path": "~/.openclaw/state/openclaw.sqlite"
+  }
+}
+
